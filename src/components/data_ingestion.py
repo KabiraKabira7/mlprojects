@@ -9,13 +9,13 @@ from dataclasses import dataclass
 
 @dataclass
 class DataIngestionConfig:
-    train_data_path:str=DS.path.join('artifacts',"train.csv")
+    train_data_path:str=os.path.join('artifacts',"train.csv")
     test_data_path:str=os.path.join('artifacts',"test.csv")
     raw_data_path:str=os.path.join('artifacts',"data.csv")
     
 class DataIngestion:
     def __init__(self):
-        self.ingestionconfigif=DataIngestionConfig()
+        self.ingestion_config=DataIngestionConfig()
         
     def initiate_data_ingestion(self):
         logging.info("Enter the data ingestion method or components")
@@ -23,7 +23,7 @@ class DataIngestion:
             df = pd.read_csv(r'C:\Users\PC\Desktop\ml_project\notebook\stud.csv')
             logging.info('Read the dataset as dataframe')
             
-            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist=ok=True)
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
             
             df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)
             
@@ -39,9 +39,9 @@ class DataIngestion:
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path
             )
-        except:Exception as e:
+        except Exception as e:
             raise customException(e,sys)
         
 if __name__=="__main__":
     obj=DataIngestion()
-            pass
+    obj.initiate_data_ingestion()
