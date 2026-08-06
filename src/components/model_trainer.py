@@ -41,8 +41,8 @@ class ModelTrainer:
                      "XGBClassifier":XGBRegressor(),
                      "Catboosting Classifier":CatBoostRegressor(verbose=False),
                      "AdaBoost Classifier":AdaBoostRegressor(),
-                     }
-             params={
+            }
+            params={
                 "Decision Tree": {
                     'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
                     # 'splitter':['best','random'],
@@ -82,7 +82,7 @@ class ModelTrainer:
                                                                     
             
             model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=X_test,y_test=y_test,
-                                             models=models)
+                                             models=models,Param=params)
         
             ## to get best model score from dict
             
